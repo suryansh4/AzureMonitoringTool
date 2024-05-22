@@ -1,0 +1,36 @@
+.topbar {
+  text-align: center;
+  height: 100%;
+  background: #f8f8f8 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #1d1d1d05;
+  opacity: 1;
+}
+.topimg{
+   height: 100%;
+    height: 50;
+    width: 20%;
+    left: 0;
+    display: inline-block;
+    float: left;
+}
+.topimage{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+.header-heading {
+  font: normal normal 600 24px/32px Segoe UI;
+  letter-spacing: 0px;
+  color: #0a5fb6;
+  opacity: 1;
+  font-size: 30px;
+  padding: 24px;
+}
+.refresh-button {
+  position: absolute;
+  right: 2rem;
+  top: 1.40rem;
+}
+.child-rows{
+  background-color: red;
+}

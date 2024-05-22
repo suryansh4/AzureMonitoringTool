@@ -1,0 +1,71 @@
+.dashboard {
+  
+    /* bottom: 0;  */
+    background: #d8f308 0% 0% no-repeat padding-box;
+    opacity: 1;
+    /* box-sizing: border-box; */
+    width: 99.3%;
+  }
+  .top-section {
+    height: 5rem;
+  }
+  .bottom-section {
+    background: #e0e5e8 0% 0% no-repeat padding-box;
+    opacity: 1;
+    padding: 26px;
+    display: flex;
+    justify-content: center;
+   
+  }
+  .logintest-heading{
+    text-align: center;
+    color: black;
+  }
+  .mainwindow {
+    background: #f8f8f8 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #2e2e2e0a;
+    border-radius: 2px;
+    opacity: 1;
+    height: 100%;
+    padding: 0px;
+  }
+  .containerr {
+    width: 100%;
+    height: 100%;
+  }
+  .sidebar {
+    padding: 0px;
+    height: 100%;
+    text-align: center;
+    background: #f8f8f8 0% 0% no-repeat padding-box;
+    box-shadow: 0px 3px 6px #2e2e2e0a;
+    border-radius: 2px;
+    opacity: 1;
+    bottom: 0%;
+    margin-left: 0px;
+  }
+  .remove-padding {
+    padding: 0;
+  }
+
+.login-section{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem;
+  width: 20rem;
+
+}
+.login-section>input{
+ padding: 7px;
+ margin: 8px;
+
+}
+.login-btn{
+  width: 5rem;
+}
+.Login-button{
+  text-align: center;
+  margin-top: 1rem;
+}
+  

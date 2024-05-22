@@ -1,0 +1,80 @@
+.table-costum {
+  width: 100%;
+  height: 400px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+
+thead th {
+  background-color: #333;
+  color: #fff;
+  text-align: left;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: #ff0000;
+  color: #fff;
+  cursor: pointer;
+}
+
+tbody tr:nth-child(even) {
+  background-color: #ff0000;
+  color: black;
+  cursor: pointer;
+}
+
+tbody tr:nth-child(odd):hover {
+  background-color: #cc0000;
+}
+
+tbody tr:nth-child(even) td {
+  background-color: #b3d9ff;
+}
+
+tbody tr:nth-child(odd) td {
+  background-color: #99ccff;
+}
+
+/* Adjust font sizes and other styles as needed */
+th,
+td {
+  padding: 8px;
+  font-size: 14px;
+  white-space: nowrap; /* prevent text wrapping */
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.child-rows td {
+  padding-left: 25px;
+  background-color: #ff9999;
+}
+.Parent-row {
+  border: 1px solid blue;
+  color: darkblue;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* Add a shadow effect */
+  cursor: pointer; /* Change cursor to indicate clickability */
+  transition: box-shadow 0.3s ease; /* Add a smooth transition for the shadow */
+}
+
+
+
+/* Add specific styles for smaller screens */
+@media (max-width: 768px) {
+  th,
+  td {
+    font-size: 12px;
+  }
+}

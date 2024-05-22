@@ -1,0 +1,22 @@
+.maincontainer {
+  background: #e0e5e8 0% 0% no-repeat padding-box;
+  opacity: 1;
+}
+.card-container {
+}
+.table-container {
+  margin-top: 24px;
+  padding-top: 8px;
+  background-color: white;
+  margin-left:0px ;
+  margin-right: 0px;
+
+}
+.table-heading {
+  margin-bottom: 17px;
+font-size: 17px;
+  font: normal normal 600 14px/19px Segoe UI;
+  letter-spacing: 0px;
+  color: #000000;
+  opacity: 1;
+}
