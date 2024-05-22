@@ -13,6 +13,7 @@ const Sidebar = (props) => {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [selectedPipelineOptions, setSelectedPipelineOptions] = useState([]);
   const [PipelineOptions, setPipelineResponseOptions] = useState([]);
+  const [subscriptionOptions, setSubscriptionResponseOptions] = useState(1);
 
   const handleReset = () => {
     setSubscription("All");
@@ -79,20 +80,20 @@ const Sidebar = (props) => {
   //   return convertedData;
   // };
 
-  // const [subscriptionOptions, setSubscriptionResponseOptions] = useState([]);
   // const navigate = useNavigate();
 
-  // const handleSubscriptionButtonClick = () => {
-  //   fetch("http://192.168.3.187:5000/")
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setSubscriptionResponseOptions(convertData1(data));
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching data:", error);
-  //     });
+  const handleSubscriptionButtonClick = (flag) => {
+    console.log(flag)
+    fetch(`${mainIP}/SelectedOption`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ flag }),
+    })
+      .catch((error) => {
+        console.error("Error sending data to Flask:", error);
+      });
 
-  // };
+  };
 
   const convertData2 = (data, option) => {
     const convertedData = [];
@@ -344,6 +345,7 @@ const Sidebar = (props) => {
             <li
               key={val.key}
               onClick={() => handleSubscriptionOptionClick(val.value, val.key)}
+              
             >
               {val.key}
             </li>
@@ -379,6 +381,7 @@ const Sidebar = (props) => {
               key={val.key}
               onClick={() =>
                 handleResourceGroupOptionClick(val.text, val.value)
+                
               }
             >
               {val.value}
@@ -388,16 +391,21 @@ const Sidebar = (props) => {
       </div>
       <div className="choice">
         <button
-          // onClick={handleSubscriptionButtonClick}
+          onClick={() => handleSubscriptionButtonClick(1)}
           type="button"
-          class="btn btn-costum2 btn-primary"
+          className="btn btn-costum2 btn-primary"
         >
           ADF
         </button>
-        {/* <button type="button" class="btn btn-costum btn-outline-primary">
+        <button
+          onClick={() => handleSubscriptionButtonClick(0)}
+          type="button"
+          className="btn btn-costum2 btn-primary"
+        >
           ASA
-        </button> */}
+        </button>
       </div>
+
       <div className="dropdown ">
         <h6 className="remove-margin btn-headings">Workspace Name</h6>
         <button
@@ -461,8 +469,8 @@ const Sidebar = (props) => {
           onChange={handleLTB}
         />
       </div>
-{/* trying replicating workspace name for pipeline name sarts */}
-<div className="dropdown ">
+      {/* trying replicating workspace name for pipeline name sarts */}
+      <div className="dropdown ">
         <h6 className="remove-margin btn-headings">Pipelines N</h6>
         <button
           class="remove-margin text-end buttontext btn border-primary text-dark dropdown-toggle dropdown-style"
@@ -502,9 +510,9 @@ const Sidebar = (props) => {
           ))}
         </ul>
       </div>
-{/* trying replicating workspace name for pipeline name ends */}
+      {/* trying replicating workspace name for pipeline name ends */}
 
-{/* old pipeline code starts */}
+      {/* old pipeline code starts */}
 
 
 
