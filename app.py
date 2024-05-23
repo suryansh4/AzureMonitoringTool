@@ -56,10 +56,13 @@ def WorkSpace():
     resourceGroup = data['ResourceGroup']
     completeDataList["resourceGroup"] = resourceGroup
     WorkSpaceList = azureMonitoring.SubscriptionDetail.getListOfWorkspaces(subscriptionID,resourceGroup)
-    if Flag == 0:
-        return jsonify(WorkSpaceList[0])
-    elif Flag ==1:
-        return jsonify(WorkSpaceList[1])
+    # if Flag == 0:
+    #     return jsonify(WorkSpaceList[0])
+    # elif Flag ==1:
+    #     return jsonify(WorkSpaceList[1])
+    # elif Flag ==3:
+    
+    return jsonify(WorkSpaceList)
 
 @app.route('/lastTimeAfter', methods=['Post','Get'])
 def lastTimeAfter():

@@ -14,6 +14,12 @@ const Sidebar = (props) => {
   const [selectedPipelineOptions, setSelectedPipelineOptions] = useState([]);
   const [PipelineOptions, setPipelineResponseOptions] = useState([]);
   const [subscriptionOptions, setSubscriptionResponseOptions] = useState(1);
+  const [workspaceState, setWorkspaceState] = useState({
+    workspaceData: [[]],
+    subscriptionName: '',
+    resourceGroupName: ''
+  });
+  // const [subscription , setSubscription] =useState("");
 
   const handleReset = () => {
     setSubscription("All");
@@ -35,24 +41,8 @@ const Sidebar = (props) => {
   };
   const handlepageclick = () => {
     props.setmaincomponent(true);
-    console.log(props.PipelineList);
-    // if(subscription == "All"){
-    //   alert("No Subscription Found");
-    // }else if(resourceGroup == "All"){
-    //   alert("No Resource Group Found");
-    // }else if(resource == "All"){
-    //   alert("No ADF Found");
-    // }else if(inputLTA==""){
-    //   alert("No LastTimeAfter Found");
-    // }else if(inputLTB==""){
-    //   alert("No LastTimeBefore Found");
-    // }else{
-    //   props.setmaincomponent(true);
-    // }
+  
   };
-  const before = [];
-  const after = [];
-  // Event handlers for when the dropdowns are changed
   const handleSubscriptionChange = (value) => {
     setSubscription(value);
   };
@@ -68,22 +58,11 @@ const Sidebar = (props) => {
   const handlePipelineChange = (value) => {
     setPipeline(value);
   };
-  // const convertData1 = (data) => {
-  //   const convertedData = [];
-  //   for (const key in data) {
-  //     convertedData.push({
-  //       key: key,
-  //       text: data[key],
-  //       value: data[key],
-  //     });
-  //   }
-  //   return convertedData;
-  // };
 
-  // const navigate = useNavigate();
 
   const handleSubscriptionButtonClick = (flag) => {
-    console.log(flag)
+    convertData3(workspaceState.workspaceData[flag], workspaceState.subscriptionName, workspaceState.resourceGroupName)
+    setSubscriptionResponseOptions(flag);
     fetch(`${mainIP}/SelectedOption`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -126,8 +105,8 @@ const Sidebar = (props) => {
       });
     setSearchTerm("");
   };
-
   const convertData3 = (data, option, subs) => {
+    console.log(data)
     const convertedData = [];
     for (const val in data) {
       convertedData.push({
@@ -137,7 +116,8 @@ const Sidebar = (props) => {
       });
       // console.log(convertedData[convertedData.length - 1]);
     }
-
+    console.log(convertedData)
+    setADFResponseOptions(convertedData) 
     return convertedData;
   };
 
@@ -151,8 +131,12 @@ const Sidebar = (props) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        // console.log(data);
-        setADFResponseOptions(convertData3(data, ResourceGroup, subscription));
+        // console.log(data)
+        setWorkspaceState({
+          workspaceData: data,
+          subscriptionName: subscription,
+          resourceGroupName: resourceGroup
+        });
       })
       .catch((error) => {
         console.error("Error sending data to Flask:", error);
@@ -160,20 +144,6 @@ const Sidebar = (props) => {
     setSearchTerm("");
   };
 
-  // const convertData4 = (data, option, adf, subs) => {
-  //   const convertedData = [];
-  //   // console.log(data, option, adf, subs);
-
-  //   for (const val in data) {
-  //     convertedData.push({
-  //       key: val,
-  //       text: subs + "*" + option + "*" + adf,
-  //       value: data[val],
-  //     });
-  //   }
-
-  //   return convertedData;
-  // };
 
   const convertData4 = (data, option, adf, subs) => {
     const convertedData = [];
@@ -229,17 +199,12 @@ const Sidebar = (props) => {
     setSearchTerm("");
   };
 
-  // props.setSubC([subscriptionOptions.length,""]);
-  // props.setResGC([resourceGroupOptions.length, ""]);
-  // props.setADFC([ADFOptions.length, ""]);
-  // props.setpipelineC([PipelineOptions.length, ""]);
 
   const [inputLTA, setInputLTA] = useState("");
   useEffect(() => {
     const data = {
       input: inputLTA,
     };
-    // console.log(data);
     fetch(`${mainIP}/lastTimeAfter`, {
       method: "POST",
       headers: {
@@ -257,17 +222,14 @@ const Sidebar = (props) => {
   }, [inputLTA]);
 
   const handleLTA = (event) => {
-    // console.log(event.target.value);
     setInputLTA(event.target.value);
   };
 
-  // for last time before
   const [inputLTB, setInputLTB] = useState("");
   useEffect(() => {
     const data = {
       input: inputLTB,
     };
-    // console.log(data);
     fetch(`${mainIP}/lastTimeBefore`, {
       method: "POST",
       headers: {
@@ -285,7 +247,6 @@ const Sidebar = (props) => {
   }, [inputLTB]);
 
   const handleLTB = (event) => {
-    // console.log(event.target.value);
     setInputLTB(event.target.value);
   };
 
@@ -305,10 +266,6 @@ const Sidebar = (props) => {
   const filteredADFOptions = ADFOptions.filter((val) =>
     val.key.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
-  // const filteredPipelineOptions = PipelineOptions.filter((val) =>
-  //   val.value.toLowerCase().includes(searchTerm.toLowerCase())
-  // );
 
   props.setSubC(props.subscriptionOptions.length);
   props.setResGC(resourceGroupOptions.length);
@@ -471,7 +428,7 @@ const Sidebar = (props) => {
       </div>
       {/* trying replicating workspace name for pipeline name sarts */}
       <div className="dropdown ">
-        <h6 className="remove-margin btn-headings">Pipelines N</h6>
+        <h6 className="remove-margin btn-headings">Pipelines</h6>
         <button
           class="remove-margin text-end buttontext btn border-primary text-dark dropdown-toggle dropdown-style"
           type="button"
