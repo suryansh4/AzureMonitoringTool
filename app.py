@@ -55,13 +55,7 @@ def WorkSpace():
     subscriptionID = data['subscription']
     resourceGroup = data['ResourceGroup']
     completeDataList["resourceGroup"] = resourceGroup
-    WorkSpaceList = azureMonitoring.SubscriptionDetail.getListOfWorkspaces(subscriptionID,resourceGroup)
-    # if Flag == 0:
-    #     return jsonify(WorkSpaceList[0])
-    # elif Flag ==1:
-    #     return jsonify(WorkSpaceList[1])
-    # elif Flag ==3:
-    
+    WorkSpaceList = azureMonitoring.SubscriptionDetail.getListOfWorkspaces(subscriptionID,resourceGroup)    
     return jsonify(WorkSpaceList)
 
 @app.route('/lastTimeAfter', methods=['Post','Get'])
@@ -79,11 +73,12 @@ def lastTimebefore():
 @app.route('/Pipeline', methods=['Post','Get'])
 def Pipeline():
     data = request.json
-    completeDataList["ADF"] = data['adfList'][0]
+    print(data)
+    completeDataList["ADF"] = data['ADF']
     if Flag == 0:
-        PipelineList = azureMonitoring.SubscriptionDetail.getListOfADFPipelines(completeDataList["resourceGroup"],completeDataList["ADF"],completeDataList["subscriptionID"])
+        PipelineList = azureMonitoring.SubscriptionDetail.getListOfADFPipelines(data["resourceGroup"],data["ADF"],data["subscription"])
     elif Flag == 1:
-        PipelineList = azureMonitoring.SubscriptionDetail.getListOfASAPipelines(completeDataList["resourceGroup"],completeDataList["ADF"],completeDataList["subscriptionID"])
+        PipelineList = azureMonitoring.SubscriptionDetail.getListOfASAPipelines(data["resourceGroup"],data["ADF"],data["subscription"])
     return jsonify(PipelineList)
 
 # VivekSharma
@@ -130,6 +125,7 @@ def ProcessWorkSpace(WorkSpace):
 def ActivityList():
     if Flag == 0:
         data = request.json
+        print(request.json)
         completeDataList["ADF"] = data['ADF']
         completeDataList["RunId"] = data['RunID']
         ActivityList = azureMonitoring.RunHistory.GetADFActivityList(completeDataList["subscriptionID"],completeDataList["resourceGroup"],completeDataList["ADF"],completeDataList["RunId"],completeDataList["lastTimeAfter"],completeDataList["lastTimeBefore"])
@@ -139,6 +135,7 @@ def ActivityList():
         completeDataList["RunId"] = data['RunID']
         completeDataList["PipelineName"] = data['PipelineName']
         ActivityList = azureMonitoring.RunHistory.GetASAActivityList(completeDataList["subscriptionID"],data['PipelineName'],data["ADF"],data['RunID'],completeDataList["lastTimeAfter"],completeDataList["lastTimeBefore"])
+    print(ActivityList)
     return jsonify(ActivityList)
     
 

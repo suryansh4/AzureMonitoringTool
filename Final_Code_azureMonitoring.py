@@ -124,7 +124,8 @@ class RunHistory:
                     endpoint="https://{}.dev.azuresynapse.net".format(SynapseWorkspaceName),
                     credential= credential,
                 )
-            try:                                            
+            try:        
+                print(SubscriptionID, PipelineName, SynapseWorkspaceName, PipelineRunID,LastUpdateAfter,LastUpdateBefore)                                    
                 QueryResponse = SynapseClient.pipeline_run.query_activity_runs(
                     pipeline_name = PipelineName,
                     run_id = PipelineRunID,
@@ -145,6 +146,7 @@ class RunHistory:
                 print(e) 
         else:
             print("")
+        print(ActivityResponse)
         return ActivityResponse
     
 class SubscriptionDetail:
