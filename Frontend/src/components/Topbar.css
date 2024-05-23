@@ -21,10 +21,50 @@
 .header-heading {
   font: normal normal 600 24px/32px Segoe UI;
   letter-spacing: 0px;
-  color: #0a5fb6;
+  color: black;
   opacity: 1;
   font-size: 30px;
   padding: 24px;
+  transform: translate(-10%, -10%);
+  font-size: 50px;
+  text-shadow
+    :
+    1px
+    1px
+    0
+    darkgrey,
+    1px
+    2px
+    0
+    darkgrey,
+    1px
+    3px
+    0
+    darkgrey,
+    1px
+    4px
+    0
+    darkgrey,
+    1px
+    5px
+    0
+    darkgrey,
+    1px
+    6px
+    0
+    darkgrey,
+    1px
+    7px
+    0
+    darkgrey,
+    1px
+    8px
+    0
+    darkgrey,
+    5px
+    13px
+    15px
+    black;
 }
 .refresh-button {
   position: absolute;
