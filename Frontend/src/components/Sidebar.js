@@ -26,6 +26,7 @@ const Sidebar = (props) => {
     setResourceGroup("All");
     setResource("All");
     setPipeline("All");
+    setIsClicked(null);
     props.setSubC(0);
     props.setResGC(0);
     props.setADFC(0);
@@ -59,9 +60,10 @@ const Sidebar = (props) => {
     setPipeline(value);
   };
 
-
+  const [isClicked, setIsClicked] = useState(null);
   const handleSubscriptionButtonClick = (flag) => {
     convertData3(workspaceState.workspaceData[flag], workspaceState.subscriptionName, workspaceState.resourceGroupName)
+    setIsClicked(flag);
     setSubscriptionResponseOptions(flag);
     fetch(`${mainIP}/SelectedOption`, {
       method: "POST",
@@ -135,7 +137,7 @@ const Sidebar = (props) => {
         setWorkspaceState({
           workspaceData: data,
           subscriptionName: subscription,
-          resourceGroupName: resourceGroup
+          resourceGroupName: ResourceGroup
         });
       })
       .catch((error) => {
@@ -158,7 +160,7 @@ const Sidebar = (props) => {
     return convertedData;
   };
 
-  const handleADFOptionClick = (ADF, ResourceGroup, subscription) => {
+  const handleADFOptionClick = (ADF, subscription, resourceGroup) => {
     const isSelected = selectedOptions.includes(ADF);
 
     if (isSelected) {
@@ -175,7 +177,7 @@ const Sidebar = (props) => {
     fetch(`${mainIP}/Pipeline`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ADF, subscription, ResourceGroup }),
+      body: JSON.stringify({ ADF, subscription, resourceGroup }),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -348,16 +350,16 @@ const Sidebar = (props) => {
       </div>
       <div className="choice">
         <button
-          onClick={() => handleSubscriptionButtonClick(1)}
+          onClick={() => handleSubscriptionButtonClick(0)}
           type="button"
-          className="btn btn-costum2 btn-primary"
+          className={`btn ${isClicked===0 ? 'btn-costum-clicked' : 'btn-costum2'} btn-primary`}
         >
           ADF
         </button>
         <button
-          onClick={() => handleSubscriptionButtonClick(0)}
+          onClick={() => handleSubscriptionButtonClick(1)}
           type="button"
-          className="btn btn-costum2 btn-primary"
+          className={`btn ${isClicked===1 ? 'btn-costum-clicked' : 'btn-costum2'} btn-primary`}
         >
           ASA
         </button>

@@ -29,15 +29,34 @@
   padding-top: 13px;
 }
 .btn-costum2{
-  width: 30rem;
+  width: 12rem;
 }
 .btn-costum{
-    width: 10rem;
+    width: 12rem;
 }
-.btn-costum:focus{
+.btn-costum2 {
+  background-color: white;
+  color: #0275d8;
+  width: 12rem;
+}
+
+.btn-costum2:focus {
+  background-color: white;
+  color: #0275d8;
+}
+
+.btn-costum-clicked {
+  background-color: #0275d8;
+  color: white;
+  width: 12rem;
+}
+
+.btn-costum-clicked:focus {
   background-color: #0275d8;
   color: white;
 }
+
+
 
 .dropdown-menu {
   position: absolute;

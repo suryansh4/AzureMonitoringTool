@@ -76,11 +76,11 @@ const Tablecomp = (props) => {
     );
   };
 
-  const handlePipelineClick = (ADF, RunID, RunStartDate, RunEndDate) => {
+  const handlePipelineClick = (PipelineName, ADF, RunID, RunStartDate, RunEndDate) => {
     fetch(`${mainIP}/ActivityList`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ADF, RunID, RunStartDate, RunEndDate }),
+      body: JSON.stringify({PipelineName, ADF, RunID, RunStartDate, RunEndDate }),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -115,7 +115,8 @@ const Tablecomp = (props) => {
                 <tr
                   onClick={() => {
                     handlePipelineClick(
-                      parent.ADF,
+                      parent.PipelineName,
+                      parent.Workspace,
                       parent.RunId,
                       parent.RunStartDate,
                       parent.RunEndDate
