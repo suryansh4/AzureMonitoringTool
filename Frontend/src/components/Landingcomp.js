@@ -24,7 +24,7 @@ const Landingcomp = (props) => {
           <Landingcard name = {"Resource Group"}  Count = {resGC} description ={"Resource groups in Azure Portal provide a logical container to organize, manage, monitor and govern related resources within a subscription"}/>
         </div>
         <div className="col-6 landing-div">
-          <Landingcard name = {"Data Factory"}   Count = {adfCount} description ={"Azure Data Factory (ADF) in Azure Portal is a powerful data integration service that allows you to create, schedule, and orchestrate data workflows, enabling seamless extraction, transformation, and loading (ETL)."}/>
+          <Landingcard name = {"Work Spaces"}   Count = {adfCount} description ={"Azure Data Factory (ADF) and Azure Synapse Analytics (ASA) in Azure Portal is a powerful data integration service that allows you to create, schedule, and orchestrate data workflows, enabling seamless extraction, transformation, and loading (ETL)."}/>
         </div>
         <div className="col-6 landing-div">
           <Landingcard name = {"Pipeline"}   Count = {pipelineC} description = {"Azure Pipelines in Azure Portal is a fully-featured continuous integration and delivery (CI/CD) platform that automates software builds, testing, and deployment processes, enabling seamless delivery of applications to various environments."}/>
